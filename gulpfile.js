@@ -122,7 +122,12 @@ gulp.task('help', function(){
 // Default Task
 // gulp.task('default', [ 'less', 'js', 'img', 'font', 'docsImages', 'userLogos', 'partnerLogos', 'blogImages', 'blogImagesGifs', 'watch' ]);
 
+// Build assets
+gulp.task('assets', function(callback) {
+  runSequence('clean', [ 'less', 'css', 'js', 'img', 'font', 'docsImages', 'userLogos', 'partnerLogos', 'blogImages', 'blogImagesGifs', 'collateral'], callback);
+});
+
 // Build for Production
 gulp.task('build', function (callback) {
-  runSequence( 'clean', [ 'less', 'css', 'js', 'img', 'font', 'docsImages', 'userLogos', 'partnerLogos', 'blogImages', 'blogImagesGifs', 'collateral'], 'hugo', callback);
+  runSequence('clean', [ 'assets'], 'hugo', callback);
 });
